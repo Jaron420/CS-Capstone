@@ -1,0 +1,39 @@
+/* src/index.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+header nav a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+header nav button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+div {
+  padding: 20px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
