@@ -1,0 +1,6 @@
+Django>=4.0
+djangorestframework>=3.13
+psycopg2>=2.9
+channels>=3.0
+daphne>=3.0
+django-cors-headers>=3.7

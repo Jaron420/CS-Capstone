@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'CollaBand_App',
     'rest_framework',
+    'rest_framework.authtoken',
     #To link to React
     'corsheaders',
 ]
@@ -57,8 +58,13 @@ MIDDLEWARE = [
 
 #To link to React
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.AllowAny']
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
 }
+
 
 #To link to React
 CORS_ORIGIN_ALLOW_ALL = True

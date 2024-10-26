@@ -16,9 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.authtoken import views as drf_views
+from CollaBand_App import views  # Import views from your app
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('collaband/', include('CollaBand_App.urls')),
-
+    path('api/auth/', include('CollaBand_App.urls')),
+    path('api/collaband/', include('CollaBand_App.urls')),  # Add prefix 'api/collaband/'
+    path('api-token-auth/', drf_views.obtain_auth_token, name='api_token_auth'),  # Token authentication
+    path('auth/register/', views.RegisterView.as_view(), name='register'),  # Registration endpoint
+    path('auth/login/', views.CustomAuthToken.as_view(), name='login'),  # Login endpoint
 ]
+
+
