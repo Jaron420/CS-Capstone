@@ -1,30 +1,31 @@
 // src/pages/Login.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, TextField, Container, Typography, Box } from '@mui/material';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
-import api from '../utils/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../redux/actions/authActions';
+
 
 function Login() {
   const [emailOrUsername, setEmailOrUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const error = useSelector(state => state.auth.error);
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = async e => {
+  
+  
+  const handleSubmit = e => {
     e.preventDefault();
-    try {
-      const response = await api.post('/auth/login/', {
-        email_or_username: emailOrUsername,
-        password,
-      });
-      // Save the authentication token
-      localStorage.setItem('token', response.data.token);
-      // Redirect to the dashboard
-      navigate('/dashboard');
-    } catch (err) {
-      setError('Invalid email/username or password');
-    }
+    dispatch(login(emailOrUsername, password));
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <Container maxWidth="sm">

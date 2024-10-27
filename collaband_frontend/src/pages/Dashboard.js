@@ -17,7 +17,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await api.get('/collaband/dashboard/');
+        const response = await api.get('/api/collaband/dashboard/');
         setProjects(response.data.projects);
       } catch (err) {
         console.error('Failed to fetch projects', err);

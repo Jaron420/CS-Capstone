@@ -13,7 +13,7 @@ function ProjectDetails() {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const response = await api.get(`/collaband/projects/${projectId}/`);
+        const response = await api.get(`/api/collaband/projects/${projectId}/`);
         setProject(response.data.project);
         setUserRole(response.data.userRole); // Assuming the back end provides userRole
       } catch (err) {
