@@ -100,10 +100,10 @@ def projectDAW(request, projectID):
         return Response({'error': 'Project not found'}, status=status.HTTP_404_NOT_FOUND)
 
 # Project Creation View
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def project_new(request):
-    return Response({'message': 'Project creation endpoint'}, status=status.HTTP_200_OK)
+#@api_view(['GET'])
+#@permission_classes([IsAuthenticated])
+#def project_new(request):
+    #return Response({'message': 'Project creation endpoint'}, status=status.HTTP_200_OK)
 
 # Login View (Retained for completeness)
 @api_view(['POST'])
