@@ -3,6 +3,7 @@ import api from '../../utils/api';
 
 export const login = (emailOrUsername, password) => async dispatch => {
   try {
+    dispatch({ type: 'LOGIN_REQUEST' });
     const response = await api.post('/auth/login/', {
       email_or_username: emailOrUsername,
       password,
@@ -15,13 +16,14 @@ export const login = (emailOrUsername, password) => async dispatch => {
   } catch (error) {
     dispatch({
       type: 'LOGIN_FAIL',
-      payload: error.response.data,
+      payload: error.response?.data || 'Something went wrong',
     });
   }
 };
 
 export const register = userData => async dispatch => {
   try {
+    dispatch({ type: 'REGISTER_REQUEST' });
     await api.post('/auth/register/', userData);
     dispatch({
       type: 'REGISTER_SUCCESS',
@@ -29,11 +31,12 @@ export const register = userData => async dispatch => {
   } catch (error) {
     dispatch({
       type: 'REGISTER_FAIL',
-      payload: error.response.data,
+      payload: error.response?.data || 'Something went wrong',
     });
   }
 };
 
 export const logout = () => dispatch => {
+  localStorage.removeItem('token');
   dispatch({ type: 'LOGOUT' });
 };
